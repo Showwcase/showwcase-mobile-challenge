@@ -1,4 +1,4 @@
-# Showwcase React Native Challenge
+# Showwcase Flutter Challenge
 
 ## General idea
 
@@ -12,7 +12,7 @@ You should not just implement the most basic solution. This is a chance to show 
 
 ## Requirements
 
-- React Native (https://reactnative.dev/) **Note: We dont need expo**
+- Flutter - https://flutter.dev/multi-platform/mobile
 - An Infintite scrollable list for all the pokemons
 - A Pokemon detailed screen
 - Form to add new Pokemon with basic info such as Name, Type, etc.
@@ -28,15 +28,14 @@ You should not just implement the most basic solution. This is a chance to show 
 
 ## Some specific things that we may be looking for:
 
-- Typescript
-- Atomic Design in React
 - Correct implementation of a state manager
 - Correct implementation of a navigation solution
-- Componentization
+- Correct Widget structure
 - Communication in the repo and/or code
 - Best practices with API calls and data
 - Separation of concerns between business and UI logic
 - Frequent commits
+- Themeing
 
 ## Where to get the data:
 
@@ -55,4 +54,4 @@ The data can be fetched from PokeAPI, please check this documentation that conta
 - Feature to save favorite Pokemon with separate screen to list them.
 - Search for a pokemon using Pokemon id or name
 
-© 2020 Showcase Creators Inc. All rights reserved. Certain information contained herein is derived from information which is protected by copyrights held by Showcase Creators Inc. This code challenge, including any parts of it, cannot be duplicated, distributed, copied, modified, used to make a derivative work or used in any way without the prior written consent of Showcase Creators Inc.
+© 2021 Showcase Creators Inc. All rights reserved. Certain information contained herein is derived from information which is protected by copyrights held by Showcase Creators Inc. This code challenge, including any parts of it, cannot be duplicated, distributed, copied, modified, used to make a derivative work or used in any way without the prior written consent of Showcase Creators Inc.
