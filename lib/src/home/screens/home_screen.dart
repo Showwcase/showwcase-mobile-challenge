@@ -6,7 +6,10 @@ import 'package:flutter_challenge/src/home/domain/models/pokemon/pokemon.dart';
 import 'package:flutter_challenge/src/home/domain/models/pokemon_response.dart';
 import 'package:flutter_challenge/src/home/domain/models/pokemon_response_result.dart';
 import 'package:flutter_challenge/src/home/domain/services/home_service.dart';
+import 'package:flutter_challenge/src/home/widgets/custom_vertical_divider.dart';
+import 'package:flutter_challenge/src/home/widgets/stat_row.dart';
 import 'package:flutter_challenge/src/shared/models/custom_exception.dart';
+import 'package:flutter_challenge/src/shared/utils/stat_filter.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({Key? key}) : super(key: key);
@@ -142,70 +145,119 @@ class _HomeScreenState extends State<HomeScreen> {
                       itemBuilder: (_, index) {
                         final PokemonResponseResult result = _pokemons[index]!;
 
-                        return Card(
-                          elevation: 8,
-                          margin: const EdgeInsets.symmetric(
-                            vertical: 8,
-                            horizontal: 10,
-                          ),
-                          child: Container(
-                            width: double.infinity,
-                            padding: const EdgeInsets.all(8),
-                            height: 100,
-                            child: Row(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                FutureBuilder(
-                                  future: _homeService
-                                      .getPokemonFromUrl(result.url!),
-                                  builder: (context, result) {
-                                    if (result.hasData) {
-                                      final data = result.data;
+                        return GestureDetector(
+                          onTap: () {
+                            // TODO go to detail screen
+                          },
+                          child: Card(
+                            elevation: 8,
+                            margin: const EdgeInsets.symmetric(
+                              vertical: 8,
+                              horizontal: 10,
+                            ),
+                            child: Container(
+                              width: double.infinity,
+                              padding: const EdgeInsets.all(8),
+                              height: 100,
+                              child: FutureBuilder(
+                                future:
+                                    _homeService.getPokemonFromUrl(result.url!),
+                                builder: (context, res) {
+                                  if (res.hasData) {
+                                    final data = res.data;
 
-                                      log(result.toString());
+                                    log(result.toString());
 
-                                      if (data is Pokemon) {
-                                        // String? img = data.sprites?.other?.officialArtwork!.frontDefault;
-                                        String? img =
-                                            data.sprites?.frontDefault;
+                                    if (data is Pokemon) {
+                                      String? img = data.sprites?.frontDefault;
 
-                                        return CircleAvatar(
-                                          backgroundColor: Theme.of(context)
-                                              .primaryColor
-                                              .withOpacity(0.6),
-                                          backgroundImage: NetworkImage(img!),
-                                          maxRadius: 40,
-                                        );
-                                      }
-
-                                      // error
-                                      else {
-                                        return CircleAvatar(
-                                          backgroundColor: Theme.of(context)
-                                              .primaryColor
-                                              .withOpacity(0.6),
-                                          child: const Text('PA'),
-                                        );
-                                      }
+                                      return Row(
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.start,
+                                        children: [
+                                          CircleAvatar(
+                                            backgroundColor: Theme.of(context)
+                                                .primaryColor
+                                                .withOpacity(0.6),
+                                            backgroundImage: NetworkImage(img!),
+                                            maxRadius: 40,
+                                          ),
+                                          const SizedBox(width: 10),
+                                          Column(
+                                            crossAxisAlignment:
+                                                CrossAxisAlignment.start,
+                                            mainAxisAlignment:
+                                                MainAxisAlignment.spaceAround,
+                                            children: [
+                                              Text(
+                                                result.name!,
+                                                style: Theme.of(context)
+                                                    .textTheme
+                                                    .headline6
+                                                    ?.copyWith(fontSize: 17),
+                                              ),
+                                              Container(
+                                                height: 25,
+                                                child: Row(
+                                                  mainAxisAlignment:
+                                                      MainAxisAlignment
+                                                          .spaceEvenly,
+                                                  children: [
+                                                    StatRow(
+                                                      icon: Icons.science,
+                                                      stats: data.stats!,
+                                                      filter: hpStat,
+                                                    ),
+                                                    const CustomVerticalDivider(),
+                                                    StatRow(
+                                                      icon: Icons.offline_bolt,
+                                                      stats: data.stats!,
+                                                      filter: attackStat,
+                                                    ),
+                                                    const CustomVerticalDivider(),
+                                                    StatRow(
+                                                      icon: Icons.speed,
+                                                      stats: data.stats!,
+                                                      filter: speedStat,
+                                                    ),
+                                                    const CustomVerticalDivider(),
+                                                    StatRow(
+                                                      icon: Icons.security,
+                                                      stats: data.stats!,
+                                                      filter: defenceStat,
+                                                    ),
+                                                  ],
+                                                ),
+                                              ),
+                                            ],
+                                          ),
+                                          Spacer(),
+                                          Center(
+                                            child: IconButton(
+                                              icon: Icon(
+                                                Icons.favorite_outline,
+                                              ),
+                                              onPressed: () {},
+                                            ),
+                                          ),
+                                        ],
+                                      );
                                     }
 
-                                    // loading state
+                                    // error
                                     else {
-                                      return const Center(
-                                          child: CircularProgressIndicator(
-                                              backgroundColor: Colors.white));
+                                      return Container();
                                     }
-                                  },
-                                ),
-                                const SizedBox(width: 8),
-                                Column(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [
-                                    Text(result.name!),
-                                    Text(result.url!),
-                                  ],
-                                ),
-                              ],
+                                  }
+
+                                  // loading state
+                                  else {
+                                    return const Center(
+                                        child: LinearProgressIndicator(
+                                            backgroundColor: Colors.white));
+                                  }
+                                },
+                              ),
                             ),
                           ),
                         );
