@@ -1,12 +1,15 @@
 import 'dart:developer' show log;
 
 import 'package:flutter/material.dart';
+import 'package:flutter_challenge/src/constants/app_routes.dart';
 import 'package:flutter_challenge/src/constants/constants.dart';
 import 'package:flutter_challenge/src/home/domain/models/pokemon/pokemon.dart';
 import 'package:flutter_challenge/src/home/domain/models/pokemon_response.dart';
 import 'package:flutter_challenge/src/home/domain/models/pokemon_response_result.dart';
 import 'package:flutter_challenge/src/home/domain/services/home_service.dart';
 import 'package:flutter_challenge/src/home/widgets/custom_vertical_divider.dart';
+import 'package:flutter_challenge/src/home/widgets/item_builder.dart';
+import 'package:flutter_challenge/src/home/widgets/like_badge.dart';
 import 'package:flutter_challenge/src/home/widgets/stat_row.dart';
 import 'package:flutter_challenge/src/shared/models/custom_exception.dart';
 import 'package:flutter_challenge/src/shared/utils/stat_filter.dart';
@@ -29,6 +32,9 @@ class _HomeScreenState extends State<HomeScreen> {
   bool _isInitialLoad = false;
 
   bool _isLoadingMore = false;
+
+  /// hold user favorites
+  List<PokemonResponseResult?> _likedPokemons = [];
 
   // holds the pokemon data fetched from api backend
   List<PokemonResponseResult?> _pokemons = [];
@@ -127,6 +133,15 @@ class _HomeScreenState extends State<HomeScreen> {
       ),
       appBar: AppBar(
         title: const Text('Pokemon App'),
+        actions: [
+          GestureDetector(
+            onTap: () {
+              Navigator.pushNamed(context, favScreen,
+                  arguments: {'data': _likedPokemons});
+            },
+            child: LikeBadge(value: _likedPokemons.length.toString()),
+          )
+        ],
       ),
       body: _isInitialLoad
           ? const Center(
@@ -137,130 +152,16 @@ class _HomeScreenState extends State<HomeScreen> {
                 Expanded(
                   child: RefreshIndicator(
                     onRefresh: () async {
+                      _likedPokemons.clear();
+                      setState(() {});
                       initialLoad();
                     },
-                    child: ListView.builder(
+                    child: ItemBuilder(
                       controller: _controller,
-                      itemCount: _pokemons.length,
-                      itemBuilder: (_, index) {
-                        final PokemonResponseResult result = _pokemons[index]!;
-
-                        return GestureDetector(
-                          onTap: () {
-                            // TODO go to detail screen
-                          },
-                          child: Card(
-                            elevation: 8,
-                            margin: const EdgeInsets.symmetric(
-                              vertical: 8,
-                              horizontal: 10,
-                            ),
-                            child: Container(
-                              width: double.infinity,
-                              padding: const EdgeInsets.all(8),
-                              height: 100,
-                              child: FutureBuilder(
-                                future:
-                                    _homeService.getPokemonFromUrl(result.url!),
-                                builder: (context, res) {
-                                  if (res.hasData) {
-                                    final data = res.data;
-
-                                    log(result.toString());
-
-                                    if (data is Pokemon) {
-                                      String? img = data.sprites?.frontDefault;
-
-                                      return Row(
-                                        crossAxisAlignment:
-                                            CrossAxisAlignment.start,
-                                        children: [
-                                          CircleAvatar(
-                                            backgroundColor: Theme.of(context)
-                                                .primaryColor
-                                                .withOpacity(0.6),
-                                            backgroundImage: NetworkImage(img!),
-                                            maxRadius: 40,
-                                          ),
-                                          const SizedBox(width: 10),
-                                          Column(
-                                            crossAxisAlignment:
-                                                CrossAxisAlignment.start,
-                                            mainAxisAlignment:
-                                                MainAxisAlignment.spaceAround,
-                                            children: [
-                                              Text(
-                                                result.name!,
-                                                style: Theme.of(context)
-                                                    .textTheme
-                                                    .headline6
-                                                    ?.copyWith(fontSize: 17),
-                                              ),
-                                              Container(
-                                                height: 25,
-                                                child: Row(
-                                                  mainAxisAlignment:
-                                                      MainAxisAlignment
-                                                          .spaceEvenly,
-                                                  children: [
-                                                    StatRow(
-                                                      icon: Icons.science,
-                                                      stats: data.stats!,
-                                                      filter: hpStat,
-                                                    ),
-                                                    const CustomVerticalDivider(),
-                                                    StatRow(
-                                                      icon: Icons.offline_bolt,
-                                                      stats: data.stats!,
-                                                      filter: attackStat,
-                                                    ),
-                                                    const CustomVerticalDivider(),
-                                                    StatRow(
-                                                      icon: Icons.speed,
-                                                      stats: data.stats!,
-                                                      filter: speedStat,
-                                                    ),
-                                                    const CustomVerticalDivider(),
-                                                    StatRow(
-                                                      icon: Icons.security,
-                                                      stats: data.stats!,
-                                                      filter: defenceStat,
-                                                    ),
-                                                  ],
-                                                ),
-                                              ),
-                                            ],
-                                          ),
-                                          Spacer(),
-                                          Center(
-                                            child: IconButton(
-                                              icon: Icon(
-                                                Icons.favorite_outline,
-                                              ),
-                                              onPressed: () {},
-                                            ),
-                                          ),
-                                        ],
-                                      );
-                                    }
-
-                                    // error
-                                    else {
-                                      return Container();
-                                    }
-                                  }
-
-                                  // loading state
-                                  else {
-                                    return const Center(
-                                        child: LinearProgressIndicator(
-                                            backgroundColor: Colors.white));
-                                  }
-                                },
-                              ),
-                            ),
-                          ),
-                        );
+                      likedPokemons: _likedPokemons,
+                      pokemons: _pokemons,
+                      callback: () {
+                        setState(() {});
                       },
                     ),
                   ),

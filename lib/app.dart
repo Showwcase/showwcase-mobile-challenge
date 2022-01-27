@@ -3,6 +3,8 @@ import 'package:flutter_challenge/src/constants/app_routes.dart';
 import 'package:flutter_challenge/src/login/screens/login_screen.dart';
 import 'package:flutter_challenge/src/splash/screens/splash_screen.dart';
 
+import 'src/detail/screens/detail_screen.dart';
+import 'src/favorite/screens/fav_screen.dart';
 import 'src/home/screens/home_screen.dart';
 
 class MyApp extends StatelessWidget {
@@ -18,13 +20,19 @@ class MyApp extends StatelessWidget {
       onGenerateRoute: (settings) {
         switch (settings.name) {
           case loginScreen:
-            return MaterialPageRoute(builder: (_) => LoginScreen());
+            return MaterialPageRoute(builder: (_) => const LoginScreen());
 
           case homeScreen:
-            return MaterialPageRoute(builder: (_) => HomeScreen());
+            return MaterialPageRoute(builder: (_) => const HomeScreen());
+
+          case detailScreen:
+          return MaterialPageRoute(builder: (_) => DetailScreen(arguments: settings.arguments as Map<String, dynamic>));
+
+              case favScreen:
+          return MaterialPageRoute(builder: (_) => FavoriteScreen(args: settings.arguments as Map<String, dynamic>));
 
           default:
-            return MaterialPageRoute(builder: (_) => SplashScreen());
+            return MaterialPageRoute(builder: (_) => const SplashScreen());
         }
       },
     );

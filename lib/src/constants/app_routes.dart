@@ -10,3 +10,5 @@ const String detailScreen = 'detail';
 const String searchScreen = 'search';
 
 const String splashScreen = 'splash';
+
+const String favScreen = 'favorite';
