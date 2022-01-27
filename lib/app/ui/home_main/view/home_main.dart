@@ -13,7 +13,7 @@ class HomeMain extends StatelessWidget {
         return  Scaffold(
           appBar: SimpleAppBar(title: "Home Page",onClick: ()=>print("hello world"), endIcon: Icons.notifications_none,),
           body: const Padding(
-            padding: EdgeInsets.all(8.0),
+            padding: EdgeInsets.symmetric(horizontal: 8),
             child: BuildHomeMainBody(),
           ),
       floatingActionButton: FloatingActionButton(
