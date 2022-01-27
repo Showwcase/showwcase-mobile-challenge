@@ -1,9 +1,13 @@
 import 'dart:io';
 
-import 'package:showwcase_flutter_challenge/app/core/model/response_http_data.dart';
+import 'package:showwcase_flutter_challenge/app/core/model/service_model/response_http_data.dart';
 import 'package:showwcase_flutter_challenge/app/core/util/default_value.dart';
 import 'package:http/http.dart' as http;
 
+
+/**
+ * We wil use this class for the http services sucs as Get,post,delete ,etc.
+ */
 class HttpService {
   late String baseUrl;
 

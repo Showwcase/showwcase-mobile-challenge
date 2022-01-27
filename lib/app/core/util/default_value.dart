@@ -1,5 +1,9 @@
 import 'package:flutter/material.dart';
 
+/**
+ * This class is to set default values such as color code api etc
+ */
+
 ///  api url for to connect with backend services
 const String dAPI = "https://pokeapi.co/api/v2/";
 

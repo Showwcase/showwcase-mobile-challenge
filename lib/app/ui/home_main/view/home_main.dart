@@ -9,8 +9,20 @@ class HomeMain extends StatelessWidget {
   Widget build(BuildContext context) {
     return ScreenUtilInit(
       builder: () {
-        return const Scaffold(
-          body: BuildHomeMainBody()
+        return  Scaffold(
+          body: Stack(
+            children:  [
+              const BuildHomeMainBody(),
+              Positioned(
+                  right: 30,
+                  bottom: 40,
+                  child: FloatingActionButton(
+                    backgroundColor: Theme.of(context).primaryColor,
+                    child: Icon(Icons.add,color: Colors.white,size: 28.sp,),
+                    onPressed: () {  },)
+              )
+            ],
+          )
         );
       }
     );
