@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:showwcase_flutter_challenge/app/core/widget/appbar/simple_app_bar.dart';
 import 'package:showwcase_flutter_challenge/app/ui/home_main/view/build_home_main_body.dart';
 
 class HomeMain extends StatelessWidget {
@@ -10,9 +11,13 @@ class HomeMain extends StatelessWidget {
     return ScreenUtilInit(
       builder: () {
         return  Scaffold(
+          appBar: SimpleAppBar(title: "Home Page",onClick: ()=>print("hello world"), endIcon: Icons.notifications_none,),
           body: Stack(
             children:  [
-              const BuildHomeMainBody(),
+              const Padding(
+                padding: EdgeInsets.all(8.0),
+                child: BuildHomeMainBody(),
+              ),
               Positioned(
                   right: 30,
                   bottom: 40,

@@ -17,7 +17,7 @@ class HomeRepo {
 
   Future<HttpGetResult<PokemonModel>> getPokemonData({page}) async {
     ResponseHttpData result =
-        await _httpService.getData("pokemon?limit=30&offset=$page");
+        await _httpService.getData("pokemon?limit=20&offset=$page");
     if (result.isSuccessful) {
       PokemonModel pokemonData = pokemonModelFromJson(result.mData);
       return HttpGetResult("", 200, pokemonData, true);
