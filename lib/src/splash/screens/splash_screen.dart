@@ -27,15 +27,24 @@ class _SplashScreenState extends State<SplashScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: Padding(
-        padding: const EdgeInsets.all(16.0),
-        child: Column(
-          children: const [
-            Text('Pokemon'),
-            Spacer(),
-            CircularProgressIndicator(),
-          ],
+    return SafeArea(
+      child: Scaffold(
+        body: Padding(
+          padding: const EdgeInsets.all(16.0),
+          child: Column(
+            children: [
+              Center(
+                  child: Padding(
+                padding: const EdgeInsets.symmetric(vertical: 200),
+                child: Text(
+                  'Pokemon App',
+                  style: Theme.of(context).textTheme.headline5,
+                ),
+              )),
+              const Spacer(),
+              const Center(child: CircularProgressIndicator()),
+            ],
+          ),
         ),
       ),
     );
