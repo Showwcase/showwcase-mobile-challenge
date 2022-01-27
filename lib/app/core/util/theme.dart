@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import 'default_value.dart';
 
+///We will use This class for the whole theme
 class StyleTheme {
   ThemeData getTheme() {
     return ThemeData(

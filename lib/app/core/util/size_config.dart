@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+///this class will be use for the responsive Ui to calculate Width Height etc.
 class SizeConfig {
   late MediaQueryData _mediaQueryData;
   late double screenWidth;
