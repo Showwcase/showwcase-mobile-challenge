@@ -12,22 +12,14 @@ class HomeMain extends StatelessWidget {
       builder: () {
         return  Scaffold(
           appBar: SimpleAppBar(title: "Home Page",onClick: ()=>print("hello world"), endIcon: Icons.notifications_none,),
-          body: Stack(
-            children:  [
-              const Padding(
-                padding: EdgeInsets.all(8.0),
-                child: BuildHomeMainBody(),
-              ),
-              Positioned(
-                  right: 30,
-                  bottom: 40,
-                  child: FloatingActionButton(
-                    backgroundColor: Theme.of(context).primaryColor,
-                    child: Icon(Icons.add,color: Colors.white,size: 28.sp,),
-                    onPressed: () {  },)
-              )
-            ],
-          )
+          body: const Padding(
+            padding: EdgeInsets.all(8.0),
+            child: BuildHomeMainBody(),
+          ),
+      floatingActionButton: FloatingActionButton(
+        backgroundColor: Theme.of(context).primaryColor,
+        child: Icon(Icons.add,color: Colors.white,size: 28.sp,),
+        onPressed: () {  },),
         );
       }
     );
