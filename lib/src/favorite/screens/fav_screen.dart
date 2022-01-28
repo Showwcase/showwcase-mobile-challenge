@@ -16,11 +16,18 @@ class FavoriteScreen extends StatelessWidget {
         body: Column(
           children: [
             Expanded(
-              child: ItemBuilder(
-                pokemons: args['data'],
-                showLikeButton: false,
-                callback: () {},
-              ),
+              child: args['data'].isEmpty
+                  ? Center(
+                      child: Text(
+                      'you dont have any favorite pokemons yet',
+                      style: Theme.of(context).textTheme.bodyText1?.copyWith(
+                          fontStyle: FontStyle.italic, color: Colors.grey),
+                    ))
+                  : ItemBuilder(
+                      pokemons: args['data'],
+                      showLikeButton: false,
+                      callback: () {},
+                    ),
             ),
           ],
         ),

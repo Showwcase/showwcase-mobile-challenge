@@ -17,6 +17,9 @@ class _LoginScreenState extends State<LoginScreen> {
   late TextEditingController username;
   late TextEditingController password;
 
+  SnackBar snackBar(String message, Color color) =>
+      SnackBar(content: Text(message), backgroundColor: color);
+
   @override
   void initState() {
     super.initState();
@@ -80,18 +83,24 @@ class _LoginScreenState extends State<LoginScreen> {
               Center(
                 child: ElevatedButton(
                   onPressed: () async {
-                    showDialog(
-                        context: context,
-                        builder: (_) =>
-                            const Center(child: CircularProgressIndicator()));
+                    if (username.text.isEmpty || password.text.isEmpty) {
+                      ScaffoldMessenger.of(context).showSnackBar(
+                        snackBar(
+                            'no username or password provided. Please provide all the details',
+                            Colors.red),
+                      );
+                    } else {
+                      showDialog(
+                          context: context,
+                          builder: (_) =>
+                              const Center(child: CircularProgressIndicator()));
 
-                    // TODO validate details
-                    var res =
-                        await _loginService.login(username.text, password.text);
+                      await _loginService.login(username.text, password.text);
 
-                    Navigator.of(context, rootNavigator: true).pop();
+                      Navigator.of(context, rootNavigator: true).pop();
 
-                    Navigator.pushReplacementNamed(context, homeScreen);
+                      Navigator.pushReplacementNamed(context, homeScreen);
+                    }
                   },
                   child: const Text('sign in'),
                 ),

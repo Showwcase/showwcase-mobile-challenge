@@ -16,7 +16,7 @@ class ItemBuilder extends StatelessWidget {
     this.controller,
     this.pokemons = const [],
     this.likedPokemons = const [],
-    this.showLikeButton=true,
+    this.showLikeButton = true,
     required this.callback,
   }) : super(key: key);
 
@@ -57,7 +57,7 @@ class ItemBuilder extends StatelessWidget {
                   if (res.hasData) {
                     final data = res.data;
 
-                    log(result.toString());
+                    // log(result.toString());
 
                     if (data is Pokemon) {
                       String? img = data.sprites?.frontDefault;
@@ -118,25 +118,28 @@ class ItemBuilder extends StatelessWidget {
                             ],
                           ),
                           const Spacer(),
-                        showLikeButton ?  Center(
-                            child: IconButton(
-                              icon: likedPokemons.contains(result)
-                                  ? Icon(
-                                      Icons.favorite,
-                                      color: Theme.of(context).primaryColor,
-                                    )
-                                  : const Icon(Icons.favorite_outline),
-                              onPressed: () {
-                                if (likedPokemons.contains(result)) {
-                                  likedPokemons.remove(result);
-                                } else {
-                                  likedPokemons.add(result);
-                                }
+                          showLikeButton
+                              ? Center(
+                                  child: IconButton(
+                                    icon: likedPokemons.contains(result)
+                                        ? Icon(
+                                            Icons.favorite,
+                                            color:
+                                                Theme.of(context).primaryColor,
+                                          )
+                                        : const Icon(Icons.favorite_outline),
+                                    onPressed: () {
+                                      if (likedPokemons.contains(result)) {
+                                        likedPokemons.remove(result);
+                                      } else {
+                                        likedPokemons.add(result);
+                                      }
 
-                                callback();
-                              },
-                            ),
-                          ): Container(),
+                                      callback();
+                                    },
+                                  ),
+                                )
+                              : Container(),
                         ],
                       );
                     }
@@ -150,8 +153,11 @@ class ItemBuilder extends StatelessWidget {
                   // loading state
                   else {
                     return const Center(
-                        child: LinearProgressIndicator(
-                            backgroundColor: Colors.white));
+                        child: Padding(
+                      padding: EdgeInsets.all(8.0),
+                      child: LinearProgressIndicator(
+                          backgroundColor: Colors.white),
+                    ));
                   }
                 },
               ),
