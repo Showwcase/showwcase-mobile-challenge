@@ -1,5 +1,3 @@
-import 'dart:developer';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_challenge/src/constants/app_routes.dart';
 import 'package:flutter_challenge/src/constants/constants.dart';

@@ -11,3 +11,17 @@ const String defenceStat = 'defense';
 const String specialDefenceStat = 'special-defense';
 
 const String specialAttackStat = 'special-attack';
+
+const List<String> pokemonTypes = [
+  "Bug",
+  "Dark",
+  "Dragon",
+  "Electric",
+  "Fairy",
+  "Fighting",
+  "Fire",
+  "Flying",
+  "Ghost",
+  "Grass",
+  "Ground",
+];

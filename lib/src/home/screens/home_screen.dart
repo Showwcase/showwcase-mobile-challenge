@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 import 'package:flutter_challenge/src/constants/app_routes.dart';
 import 'package:flutter_challenge/src/constants/constants.dart';
@@ -122,11 +121,14 @@ class _HomeScreenState extends State<HomeScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       floatingActionButton: FloatingActionButton(
-        onPressed: () {},
+        onPressed: () {
+          Navigator.pushNamed(context, addScreen);
+        },
         child: const Icon(Icons.add),
         tooltip: 'add new pokemon',
       ),
       appBar: AppBar(
+        automaticallyImplyLeading: false,
         title: const Text('Pokemon App'),
         actions: [
           GestureDetector(

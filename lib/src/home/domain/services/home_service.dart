@@ -33,7 +33,7 @@ class HomeService implements HomeRepoImpl {
 
       return PokemonResponse.fromJson(resp);
     } on SocketException {
-      throw FetchDataException('No internet connection');
+      return FetchDataException('No internet connection');
     }
 
     // catch error
@@ -54,7 +54,7 @@ class HomeService implements HomeRepoImpl {
 
       return Pokemon.fromJson(resp);
     } on SocketException {
-      throw FetchDataException('No internet connection');
+      return FetchDataException('No internet connection');
     }
 
     // catch error
@@ -74,7 +74,7 @@ class HomeService implements HomeRepoImpl {
 
       return Pokemon.fromJson(resp);
     } on SocketException {
-      throw FetchDataException('No internet connection');
+      return FetchDataException('No internet connection');
     }
 
     // catch error
