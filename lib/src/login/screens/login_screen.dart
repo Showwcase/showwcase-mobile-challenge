@@ -40,12 +40,13 @@ class _LoginScreenState extends State<LoginScreen> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
+              const SizedBox(height: 50),
               const Center(child: FlutterLogo(size: 300)),
               Text(
                 'Login to continue',
                 style: Theme.of(context).textTheme.headline6,
               ),
-              const SizedBox(height: 20),
+              const SizedBox(height: 10),
               TextField(
                 controller: username,
                 decoration: const InputDecoration(

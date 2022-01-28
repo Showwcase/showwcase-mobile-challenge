@@ -1,18 +1,13 @@
-import 'dart:developer' show log;
 
 import 'package:flutter/material.dart';
 import 'package:flutter_challenge/src/constants/app_routes.dart';
 import 'package:flutter_challenge/src/constants/constants.dart';
-import 'package:flutter_challenge/src/home/domain/models/pokemon/pokemon.dart';
 import 'package:flutter_challenge/src/home/domain/models/pokemon_response.dart';
 import 'package:flutter_challenge/src/home/domain/models/pokemon_response_result.dart';
 import 'package:flutter_challenge/src/home/domain/services/home_service.dart';
-import 'package:flutter_challenge/src/home/widgets/custom_vertical_divider.dart';
 import 'package:flutter_challenge/src/home/widgets/item_builder.dart';
 import 'package:flutter_challenge/src/home/widgets/like_badge.dart';
-import 'package:flutter_challenge/src/home/widgets/stat_row.dart';
 import 'package:flutter_challenge/src/shared/models/custom_exception.dart';
-import 'package:flutter_challenge/src/shared/utils/stat_filter.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({Key? key}) : super(key: key);

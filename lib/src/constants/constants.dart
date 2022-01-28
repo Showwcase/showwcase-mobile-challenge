@@ -7,3 +7,7 @@ const String attackStat = 'attack';
 const String speedStat = 'speed';
 
 const String defenceStat = 'defense';
+
+const String specialDefenceStat = 'special-defense';
+
+const String specialAttackStat = 'special-attack';
