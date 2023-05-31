@@ -1,4 +1,4 @@
-# Showwcase Flutter Challenge
+# Showwcase Mobile Challenge
 
 ## General idea
 
@@ -12,7 +12,6 @@ You should not just implement the most basic solution. This is a chance to show 
 
 ## Requirements
 
-- Flutter - https://flutter.dev/multi-platform/mobile
 - An Infintite scrollable list for all the pokemons
 - A Pokemon detailed screen
 - Form to add new Pokemon with basic info such as Name, Type, etc.
@@ -28,9 +27,8 @@ You should not just implement the most basic solution. This is a chance to show 
 
 ## Some specific things that we may be looking for:
 
-- Correct implementation of a state manager
 - Correct implementation of a navigation solution
-- Correct Widget structure
+- Best practice for folder structure
 - Communication in the repo and/or code
 - Best practices with API calls and data
 - Separation of concerns between business and UI logic
