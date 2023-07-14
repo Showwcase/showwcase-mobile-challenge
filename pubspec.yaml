@@ -1,0 +1,47 @@
+name: showwcase_flutter_challenge
+description: A new Flutter project.
+
+
+publish_to: 'none' # Remove this line if you wish to publish to pub.dev
+
+
+version: 1.0.0+1
+
+environment:
+  sdk: ">=2.15.0 <3.0.0"
+
+
+dependencies:
+  flutter:
+    sdk: flutter
+
+
+  cupertino_icons: ^1.0.2
+  get: ^4.6.1
+  flutter_svg: ^1.0.3
+  flutter_screenutil: ^5.1.0
+  device_preview: ^1.0.0
+  http: ^0.13.4
+  pull_to_refresh: ^2.0.0
+  cached_network_image: ^3.2.0
+
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+
+
+  flutter_lints: ^1.0.0
+
+
+flutter:
+
+
+  uses-material-design: true
+
+  # To add assets to your application, add an assets section, like this:
+  # assets:
+  #   - images/a_dot_burr.jpeg
+  #   - images/a_dot_ham.jpeg
+
+
