@@ -42,31 +42,61 @@ class SearchDialog extends GetView<PokemonListingController> {
                       ),
                     ),
                   ),
-                  InkWell(
-                    onTap: () {
-                      controller.isSearching.value = false;
-                      controller.noSearchResult.value = false;
-                      controller.prePopulate();
-                      Get.back();
-                    },
-                    child: Container(
-                      padding: const EdgeInsets.symmetric(vertical: 15.0),
-                      decoration: const BoxDecoration(
-                        color: Colors.green,
-                        borderRadius: BorderRadius.only(
-                          bottomLeft: Radius.circular(32.0),
-                          bottomRight: Radius.circular(32.0),
+                  Row(
+                    children: [
+                      Expanded(
+                        child: InkWell(
+                          onTap: () {
+                            controller.isSearching.value = false;
+                            controller.noSearchResult.value = false;
+                            controller.prePopulate();
+                            Get.back();
+                          },
+                          child: Container(
+                            padding: const EdgeInsets.symmetric(vertical: 15.0),
+                            decoration: const BoxDecoration(
+                              color: Colors.redAccent,
+                              borderRadius: BorderRadius.only(
+                                bottomLeft: Radius.circular(32.0),
+                              ),
+                            ),
+                            child: Text(
+                              "Close",
+                              style: Theme.of(context)
+                                  .textTheme
+                                  .titleLarge!
+                                  .copyWith(color: Colors.white),
+                              textAlign: TextAlign.center,
+                            ),
+                          ),
                         ),
                       ),
-                      child: Text(
-                        "Go Back",
-                        style: Theme.of(context)
-                            .textTheme
-                            .titleLarge!
-                            .copyWith(color: Colors.white),
-                        textAlign: TextAlign.center,
+                      Expanded(
+                        child: InkWell(
+                          onTap: () {
+                            controller.isSearching.value = false;
+                            controller.noSearchResult.value = false;
+                          },
+                          child: Container(
+                            padding: const EdgeInsets.symmetric(vertical: 15.0),
+                            decoration: const BoxDecoration(
+                              color: Colors.green,
+                              borderRadius: BorderRadius.only(
+                                bottomRight: Radius.circular(32.0),
+                              ),
+                            ),
+                            child: Text(
+                              "Try Again",
+                              style: Theme.of(context)
+                                  .textTheme
+                                  .titleLarge!
+                                  .copyWith(color: Colors.white),
+                              textAlign: TextAlign.center,
+                            ),
+                          ),
+                        ),
                       ),
-                    ),
+                    ],
                   ),
                 ],
               ),
@@ -127,6 +157,7 @@ class SearchDialog extends GetView<PokemonListingController> {
                     controller: searchController,
                     decoration: const InputDecoration(
                       hintText: "Enter pokemon name...",
+                      border: InputBorder.none,
                     ),
                     maxLines: 8,
                   ),
