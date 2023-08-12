@@ -5,9 +5,13 @@ import 'package:pokemon/features/auth_feature/screens/sign_in_page.dart';
 import 'package:pokemon/features/listing_feature/presentation/screens/home_page.dart';
 
 class AuthController extends GetxController {
-  final TextEditingController passwordController = TextEditingController();
-  final TextEditingController emailController = TextEditingController();
-  final TextEditingController nameController = TextEditingController();
+  // TODO(Cyenite): Remove test credentials
+  final TextEditingController emailController =
+      TextEditingController(text: 'deve@test.com');
+  final TextEditingController passwordController =
+      TextEditingController(text: 'dev_test');
+  final TextEditingController nameController =
+      TextEditingController(text: 'John Doe');
 
   final _isSignedIn = false.obs;
 
