@@ -4,11 +4,13 @@ import 'package:flutter_dotenv/flutter_dotenv.dart';
 ///
 class EnvironmentUtil {
   /// Initialize the environment utility to load the variables;
+  ///
   static Future<void> init() async {
     await dotenv.load(fileName: '.env');
   }
 
   /// The api url
+  ///
   static String get kApiUrl {
     switch (dotenv.env['ENV']) {
       case 'production':

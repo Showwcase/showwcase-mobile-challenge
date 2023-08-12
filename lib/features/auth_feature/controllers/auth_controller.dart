@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:pokemon/core/utils/logger_util.dart';
-import 'package:pokemon/features/auth_feature/presentation/screens/sign_in_page.dart';
-import 'package:pokemon/features/pokemon_listing_feature/presentation/screens/home_page.dart';
+import 'package:pokemon/features/auth_feature/screens/sign_in_page.dart';
+import 'package:pokemon/features/listing_feature/presentation/screens/home_page.dart';
 
 class AuthController extends GetxController {
   final TextEditingController passwordController = TextEditingController();
@@ -22,6 +22,7 @@ class AuthController extends GetxController {
       case (true, true):
         Get.offAll(
           () => const HomePage(),
+          transition: Transition.fadeIn,
         );
       case (true, false):
         Get.snackbar(

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:pokemon/features/auth_feature/presentation/controllers/auth_controller.dart';
+import 'package:pokemon/features/auth_feature/controllers/auth_controller.dart';
 
 class SplashPage extends GetView<AuthController> {
   const SplashPage({super.key});
