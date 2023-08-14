@@ -104,36 +104,38 @@ class AddPokemonPage extends GetView<AddPokemonController> {
               WidgetUtil.smallVSpacer,
               FormField<String>(
                 builder: (FormFieldState<String> state) {
-                  return Obx(() => InputDecorator(
-                        decoration: InputDecoration(
-                          fillColor: const Color(0xFFF5F9FD),
-                          label: const Text('Type'),
-                          hintText: '-- select --',
-                          border: OutlineInputBorder(
-                              borderRadius: BorderRadius.circular(14),
-                              borderSide: const BorderSide(
-                                  color: Colors.black, width: 0.1)),
-                          errorBorder: const OutlineInputBorder(
-                            borderSide: BorderSide(color: Colors.redAccent),
-                          ),
+                  return Obx(
+                    () => InputDecorator(
+                      decoration: InputDecoration(
+                        fillColor: const Color(0xFFF5F9FD),
+                        label: const Text('Type'),
+                        hintText: '-- select --',
+                        border: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(14),
+                            borderSide: const BorderSide(
+                                color: Colors.black, width: 0.1)),
+                        errorBorder: const OutlineInputBorder(
+                          borderSide: BorderSide(color: Colors.redAccent),
                         ),
-                        isEmpty: controller.selectedType.value.isEmpty,
-                        child: DropdownButtonHideUnderline(
-                          child: DropdownButton<String>(
-                            value: controller.selectedType.value,
-                            isDense: true,
-                            onChanged: (String? newValue) {
-                              controller.selectedType.value = newValue ?? '';
-                            },
-                            items: pokemonTypes.map((String value) {
-                              return DropdownMenuItem<String>(
-                                value: value,
-                                child: Text(value),
-                              );
-                            }).toList(),
-                          ),
+                      ),
+                      isEmpty: controller.selectedType.value.isEmpty,
+                      child: DropdownButtonHideUnderline(
+                        child: DropdownButton<String>(
+                          value: controller.selectedType.value,
+                          isDense: true,
+                          onChanged: (String? newValue) {
+                            controller.selectedType.value = newValue ?? '';
+                          },
+                          items: pokemonTypes.map((String value) {
+                            return DropdownMenuItem<String>(
+                              value: value,
+                              child: Text(value),
+                            );
+                          }).toList(),
                         ),
-                      ));
+                      ),
+                    ),
+                  );
                 },
               ),
               WidgetUtil.smallVSpacer,

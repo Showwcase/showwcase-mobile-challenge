@@ -81,8 +81,12 @@ class PokemonListingController extends GetxController {
     if (response) {
       noSearchResult.value = false;
       isSearching.value = false;
-      Get.off(() => PokemonDetailsPage(
-          params: {"url": '${EnvironmentUtil.kApiUrl}pokemon/$searchQuery'}));
+      Get.back();
+      Get.to(
+        () => PokemonDetailsPage(
+          params: {"url": '${EnvironmentUtil.kApiUrl}pokemon/$searchQuery'},
+        ),
+      );
     } else {
       noSearchResult.value = true;
     }

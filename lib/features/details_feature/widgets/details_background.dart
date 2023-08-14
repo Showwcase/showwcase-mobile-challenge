@@ -14,7 +14,6 @@ class DetailsBackground extends StatelessWidget {
         gradient: RadialGradient(
           colors: [
             const Color.fromARGB(255, 0, 122, 150).withOpacity(0.4),
-            // Color(0xFF00695C),
             ColorPallete.backgroundColor,
           ],
           radius: 0.75,

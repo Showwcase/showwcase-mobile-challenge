@@ -116,7 +116,7 @@ class SignUpPage extends GetView<AuthController> {
                     ],
                   ),
                 ),
-              )
+              ),
             ],
           ),
         ),

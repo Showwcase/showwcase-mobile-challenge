@@ -12,7 +12,7 @@ class SearchDialog extends GetView<PokemonListingController> {
     TextEditingController searchController = TextEditingController();
     return AlertDialog(
       title: Obx(() => Text(controller.isSearching.value
-          ? 'Searching for ${searchController.text}...'
+          ? 'Searching for ${searchController.text.trim()}...'
           : 'Search for pokemon')),
       shape: const RoundedRectangleBorder(
           borderRadius: BorderRadius.all(Radius.circular(32.0))),
@@ -36,7 +36,7 @@ class SearchDialog extends GetView<PokemonListingController> {
                       child: Padding(
                         padding: const EdgeInsets.all(8.0),
                         child: Text(
-                          'No results found for the search term "${searchController.text}"',
+                          'No results found for the search term "${searchController.text.trim()}"',
                           style: const TextStyle(fontStyle: FontStyle.italic),
                         ),
                       ),
@@ -166,8 +166,10 @@ class SearchDialog extends GetView<PokemonListingController> {
                   onTap: () {
                     if (searchController.text.isNotEmpty) {
                       controller.isSearching.value = true;
-                      controller
-                          .searchPokemon(searchController.text.toLowerCase());
+
+                      controller.searchPokemon(
+                        searchController.text.toLowerCase().trim(),
+                      );
                     }
                   },
                   child: Container(

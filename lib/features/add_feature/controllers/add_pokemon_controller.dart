@@ -12,6 +12,8 @@ class AddPokemonController extends GetxController {
 
   RxString selectedType = 'Fire'.obs;
 
+  /// Submit a new pokemon for listing
+  ///
   void addNewPokemon() async {
     if (formKey.currentState!.validate()) {
       formKey.currentState!.save();

@@ -39,7 +39,10 @@ class CredentialContainer extends StatelessWidget {
             border: InputBorder.none,
             suffixIcon: Visibility(
               visible: obscureText,
-              child: const Icon(Icons.visibility, color: Color(0xFF7C8AA0)),
+              child: const Icon(
+                Icons.visibility,
+                color: Color(0xFF7C8AA0),
+              ),
             ),
           ),
           controller: controller,
