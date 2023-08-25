@@ -38,4 +38,4 @@ unlinked.ds
 unlinked_spec.ds
 
 # dotenv environment variables file
-.env
+#.env
